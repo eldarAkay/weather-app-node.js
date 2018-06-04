@@ -1,11 +1,6 @@
 const request = require('request');
 const weather = require('./weather');
 
-var getAddress = (address) => {
-    return new Promise((resolve, reject) => {
-
-    })
-}
 
 var get = (address) => {
     const encodedAddress = encodeURIComponent(address);
