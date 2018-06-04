@@ -1,5 +1,6 @@
 const yargs = require('yargs');
 const geolocation = require('./geolocation');
+const weather = require('./weather');
 const request = require('request');
 
 const argv = yargs.options('a', {
@@ -11,4 +12,7 @@ const argv = yargs.options('a', {
     .alias('help', 'h')
     .argv;
 
-geolocation.get(argv.address);
+geolocation.get(argv.address)
+    .then((data) => weather.getWeather(data.latitude, data.longitude))
+    .then((data) => console.log(data))
+    .catch((errorMsg) => console.log(errorMsg));
