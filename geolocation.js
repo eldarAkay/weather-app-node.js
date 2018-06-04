@@ -1,7 +1,7 @@
 const request = require('request');
 const weather = require('./weather');
 
-var get = (address) => {
+var get = (address, callback) => {
     const encodedAddress = encodeURIComponent(address);
 
     request({
@@ -10,13 +10,13 @@ var get = (address) => {
     }, (error, response, body) => {
         const {status} = body;
         if (status === 'ZERO_RESULTS') {
-            console.log('UNKNOWN_ADDRESS');
+            callback('UNKNOWN_ADDRESS', undefined);
 
         } else if (status === 'OK') {
             const address = body.results[0].formatted_address;
             const latitude = body.results[0].geometry.location.lat;
             const longitude = body.results[0].geometry.location.lng;
-            weather.getWeather(latitude, longitude);
+            callback(undefined, {latitude, longitude});
         }
     });
 };
