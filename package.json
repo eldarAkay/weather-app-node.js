@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/eldarAkay/weather-app-node.js-#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "request": "^2.87.0",
     "request-promise": "^4.2.2",
     "yargs": "^11.0.0"
